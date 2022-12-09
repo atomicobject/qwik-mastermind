@@ -1,0 +1,8 @@
+.column {
+    display: grid;
+    grid-template-rows: repeat(5, minmax(0, 1fr));
+}
+
+.column:not(:last-child) {
+    border-right: 2px solid black;
+}

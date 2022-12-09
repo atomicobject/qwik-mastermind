@@ -1,0 +1,8 @@
+.square {
+    background-color: darkorchid;
+    text-align: center;
+}
+
+.square:not(:last-child) {
+    border-bottom: 2px solid black;
+}
