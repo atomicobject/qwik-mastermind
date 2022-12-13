@@ -1,0 +1,7 @@
+.game-board {
+    background-color: aqua;
+    height: 25rem;
+    outline: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));   
+}
