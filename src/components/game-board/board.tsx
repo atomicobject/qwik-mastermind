@@ -1,17 +1,17 @@
 import { component$, useStylesScoped$ } from "@builder.io/qwik";
-import { BoardColumn } from "../board-column/column";
+import { GuessColumn } from "../guess-column/guess-column";
 import styles from "./board.css?inline";
 
 export const GameBoard = component$(() => {
 	useStylesScoped$(styles);
 
-	const renderColumns = () => {
-		const columns = [];
+	const renderGuessColumns = () => {
+		const guessColumns = [];
 		for (let i = 0; i < 10; i++) {
-			columns.push(<BoardColumn key={i} />);
+			guessColumns.push(<GuessColumn key={i} />);
 		}
-		return columns;
+		return guessColumns;
 	};
 
-	return <div class="board-container">{renderColumns()}</div>;
+	return <div class="game-board">{renderGuessColumns()}</div>;
 });

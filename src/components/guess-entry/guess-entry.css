@@ -1,8 +1,8 @@
-.square {
+.guess-entry {
     background-color: darkorchid;
     text-align: center;
 }
 
-.square:not(:last-child) {
+.guess-entry:not(:last-child) {
     border-bottom: 2px solid black;
 }
