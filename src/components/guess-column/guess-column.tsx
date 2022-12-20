@@ -1,14 +1,18 @@
-import { component$, useStylesScoped$ } from "@builder.io/qwik";
+import { Component, component$, useStylesScoped$ } from "@builder.io/qwik";
 import { GuessEntry } from "../guess-entry/guess-entry";
 import styles from "./guess-column.css?inline";
+import { iGuessColumn } from "~/types/game-types";
 
-export const GuessColumn = component$(() => {
-	useStylesScoped$(styles);
+export const GuessColumn: Component<iGuessColumn> = component$(
+  ({ guessEntries }) => {
+    useStylesScoped$(styles);
 
-	const guessEntries = [];
-	for (let i = 0; i < 5; i++) {
-		guessEntries.push(<GuessEntry key={i} />);
-	}
-
-	return <div class="guess-column">{guessEntries}</div>;
-});
+    return (
+      <div class="guess-column">
+        {guessEntries.map((entry) => {
+          return <GuessEntry guess={entry} />;
+        })}
+      </div>
+    );
+  }
+);
