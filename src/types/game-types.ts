@@ -5,3 +5,7 @@ export interface iGuessColumn {
 export interface iGuessEntry {
   guess: string | number;
 }
+
+export interface iValidator {
+  data: (string | number)[];
+}

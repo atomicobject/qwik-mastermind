@@ -1,0 +1,6 @@
+.guess-validator {
+    display: grid;
+    grid-template-areas: 
+    "top-left top-right"
+    "bottom-left bottom-right";
+}
