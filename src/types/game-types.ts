@@ -7,5 +7,5 @@ export interface iGuessEntry {
 }
 
 export interface iValidator {
-  data: (string | number)[];
+  data: number[];
 }

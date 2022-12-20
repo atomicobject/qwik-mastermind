@@ -16,7 +16,7 @@ export const GuessColumn: Component<iGuessColumn> = component$(
         {entryData.map((entry) => {
           return <GuessEntry guess={entry} />;
         })}
-		<GuessValidator data={validationData} />
+		<GuessValidator data={validationData as number[]} />
       </div>
     );
   }
