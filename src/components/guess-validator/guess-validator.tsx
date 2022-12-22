@@ -5,13 +5,15 @@ import styles from "./guess-validator.css?inline";
 export const GuessValidator: Component<iValidator> = component$(({ data }) => {
 	useStylesScoped$(styles);
 
-    const colorValue = ["b", "b", "b", "b"]
-    .fill("g", 0, data[0])
-    .fill("y", data[0], data[0]+data[1]);
+	const colorValue = ["incorrect", "incorrect", "incorrect", "incorrect"]
+		.fill("correct", 0, data[0])
+		.fill("almost", data[0], data[0] + data[1]);
 
-	return <div class="guess-validator">
-        {colorValue.map((item) => {
-          return <span>{item}</span>;
-        })}
-    </div>;
+	return (
+		<div class="guess-validator">
+			{colorValue.map((item) => {
+				return <span class={"validator-border " + item}>{item}</span>;
+			})}
+		</div>
+	);
 });

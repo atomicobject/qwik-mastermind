@@ -4,5 +4,21 @@
 }
 
 .guess-entry:not(:last-child) {
-    border-bottom: 2px solid black;
+    outline: #095256 solid 1px;
+}
+
+.r {
+    background-color: #FFC09F;
+}
+
+.b{
+    background-color: #79ADDC;
+}
+
+.g{
+    background-color: #ADF7B6;
+}
+
+.y{
+    background-color: #FFEE93;
 }

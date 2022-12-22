@@ -4,3 +4,19 @@
     "top-left top-right"
     "bottom-left bottom-right";
 }
+
+.validator-border {
+    outline: #095256 solid 1px ;
+}
+
+.correct {
+    background-color: #2A9D8F;
+}
+
+.almost {
+    background-color: #E9C46A;
+}
+
+.incorrect {
+    background-color: #264653;
+}

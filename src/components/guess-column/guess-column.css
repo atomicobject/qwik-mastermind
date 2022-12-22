@@ -4,5 +4,5 @@
 }
 
 .guess-column:not(:last-child) {
-    border-right: 2px solid black;
+    outline: #095256 solid 1px;
 }
