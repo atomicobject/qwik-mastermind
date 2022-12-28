@@ -1,6 +1,6 @@
 .game-board {
-    height: 25rem;
-    outline: #095256 solid 3px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));   
+  height: 25rem;
+  outline: #095256 solid 3px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
 }

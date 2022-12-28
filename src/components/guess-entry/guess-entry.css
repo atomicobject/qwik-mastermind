@@ -1,24 +1,24 @@
 .guess-entry {
-    background-color: darkorchid;
-    text-align: center;
+  background-color: darkorchid;
+  text-align: center;
 }
 
 .guess-entry:not(:last-child) {
-    outline: #095256 solid 1px;
+  outline: #095256 solid 1px;
 }
 
 .r {
-    background-color: #FFC09F;
+  background-color: #ffc09f;
 }
 
-.b{
-    background-color: #79ADDC;
+.b {
+  background-color: #79addc;
 }
 
-.g{
-    background-color: #ADF7B6;
+.g {
+  background-color: #adf7b6;
 }
 
-.y{
-    background-color: #FFEE93;
+.y {
+  background-color: #ffee93;
 }
