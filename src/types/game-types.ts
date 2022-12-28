@@ -1,5 +1,6 @@
 export interface iGuessColumn {
   guessEntries: (string | number)[];
+  index: number;
 }
 
 export interface iGuessEntry {

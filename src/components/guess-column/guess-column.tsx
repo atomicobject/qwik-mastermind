@@ -5,7 +5,7 @@ import { iGuessColumn } from "~/types/game-types";
 import { GuessValidator } from "../guess-validator/guess-validator";
 
 export const GuessColumn: Component<iGuessColumn> = component$(
-  ({ guessEntries }) => {
+  ({ guessEntries, index }) => {
     useStylesScoped$(styles);
 
     const entryData = guessEntries.slice(0, 4);
@@ -13,8 +13,13 @@ export const GuessColumn: Component<iGuessColumn> = component$(
 
     return (
       <div class="guess-column">
-        {entryData.map((entry) => {
-          return <GuessEntry guess={entry} />;
+        {entryData.map((entry, entryIndex) => {
+          return (
+            <GuessEntry
+              key={"column " + index + " entry " + entryIndex}
+              guess={entry}
+            />
+          );
         })}
         <GuessValidator data={validationData as number[]} />
       </div>

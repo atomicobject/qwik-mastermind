@@ -1,4 +1,5 @@
 import { component$, useStore, useStylesScoped$ } from "@builder.io/qwik";
+import { ColorSelectDisplay } from "../color-select-display/color-select-display";
 import { GuessColumn } from "../guess-column/guess-column";
 import styles from "./board.css?inline";
 
@@ -24,10 +25,17 @@ export const GameBoard = component$(() => {
   );
 
   return (
-    <div class="game-board">
-      {store.board.map((column) => (
-        <GuessColumn guessEntries={column} />
-      ))}
+    <div class="game-container">
+      <ColorSelectDisplay />
+      <div class="game-board">
+        {store.board.map((column, index) => (
+          <GuessColumn
+            key={"column " + index}
+            guessEntries={column}
+            index={index}
+          />
+        ))}
+      </div>
     </div>
   );
 });

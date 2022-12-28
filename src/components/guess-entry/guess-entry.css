@@ -3,7 +3,7 @@
   text-align: center;
 }
 
-.guess-entry:not(:last-child) {
+.guess-entry {
   outline: #095256 solid 1px;
 }
 
