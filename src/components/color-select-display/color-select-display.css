@@ -1,13 +1,13 @@
 .color-select-display {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
-  height: 10vw;
+  height: 5vw;
   margin-bottom: 2vw;
   width: fit-content;
 }
 
 .color-select-square {
-  width: 10vw;
+  width: 5vw;
   margin: 0.3vw;
   display: grid;
   align-items: center;
