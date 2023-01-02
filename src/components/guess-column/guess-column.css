@@ -2,7 +2,3 @@
   display: grid;
   grid-template-rows: repeat(5, minmax(0, 1fr));
 }
-
-.guess-column:not(:last-child) {
-  outline: #095256 solid 1px;
-}
