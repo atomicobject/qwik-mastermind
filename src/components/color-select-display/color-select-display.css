@@ -3,7 +3,8 @@
   grid-template-columns: repeat(6, minmax(0, 1fr));
   height: 10vw;
   margin-bottom: 2vw;
-  width: fit-content;
+  grid-row: "controls";
+  justify-self: center;
 }
 
 .color-select-square {

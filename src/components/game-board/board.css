@@ -2,9 +2,13 @@
   height: 25rem;
   border: #095256 solid 3px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  grid-template-columns: repeat(10, 5rem);
+  grid-row: "board";
+  justify-self: center;
 }
 .game-container {
   display: grid;
-  justify-content: center;
+  grid-template-areas:
+    "controls"
+    "board";
 }
