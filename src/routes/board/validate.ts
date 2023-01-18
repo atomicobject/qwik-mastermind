@@ -44,11 +44,11 @@ export const validateGuessFiltering = (
   winningAnswer: Array<String>
 ): GuessValidation => {
   const filteredAnswer = winningAnswer.filter(
-    (letter, index) => letter != guessArray[index]
+    (letter, index) => letter !== guessArray[index]
   );
 
   const filteredGuess = guessArray.filter(
-    (letter, index) => letter != winningAnswer[index]
+    (letter, index) => letter !== winningAnswer[index]
   );
 
   return [
