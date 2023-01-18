@@ -1,4 +1,4 @@
-import { validateGuess } from "./validate";
+import { validateGuess, validateGuessFiltering } from "./validate";
 import { createDOM } from "@builder.io/qwik/testing";
 import { test, expect } from "vitest";
 
@@ -18,13 +18,13 @@ test(`validateGuess should return correct validation value`, async () => {
   answerOne = ["r", "y", "r", "b"];
   guessOne = ["y", "r", "b", "r"];
 
-  resultOne = validateGuess(guessOne, answerOne);
+  resultOne = validateGuessFiltering(guessOne, answerOne);
   expect(resultOne).toStrictEqual([0, 4]);
 
   answerOne = ["r", "y", "r", "b"];
   guessOne = ["g", "g", "g", "g"];
 
-  resultOne = validateGuess(guessOne, answerOne);
+  resultOne = validateGuessFiltering(guessOne, answerOne);
   expect(resultOne).toStrictEqual([0, 0]);
 });
 

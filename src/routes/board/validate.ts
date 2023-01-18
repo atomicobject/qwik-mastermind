@@ -38,6 +38,25 @@ export const validateGuess = (
   return [numCorrect, numAlmost];
 };
 
+// jacob gave me this idea :P
+export const validateGuessFiltering = (
+  guessArray: Array<String>,
+  winningAnswer: Array<String>
+): GuessValidation => {
+  const filteredAnswer = winningAnswer.filter(
+    (letter, index) => letter != guessArray[index]
+  );
+
+  const filteredGuess = guessArray.filter(
+    (letter, index) => letter != winningAnswer[index]
+  );
+
+  return [
+    winningAnswer.length - filteredAnswer.length,
+    filteredGuess.filter((letter) => filteredAnswer.includes(letter)).length,
+  ];
+};
+
 export const onPost: RequestHandler<Promise<GuessValidation>> = async ({
   request,
 }) => {
