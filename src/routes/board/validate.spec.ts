@@ -3,11 +3,29 @@ import { createDOM } from "@builder.io/qwik/testing";
 import { test, expect } from "vitest";
 
 test(`validateGuess should return correct validation value`, async () => {
-  const answerOne = ["r", "y", "r", "b"];
-  const guessOne = ["r", "r", "r", "r"];
+  let answerOne = ["r", "y", "r", "b"];
+  let guessOne = ["r", "r", "r", "r"];
 
-  const resultOne = validateGuess(guessOne, answerOne);
+  let resultOne = validateGuess(guessOne, answerOne);
   expect(resultOne).toStrictEqual([2, 0]);
+
+  answerOne = ["r", "y", "r", "b"];
+  guessOne = ["r", "b", "r", "g"];
+
+  resultOne = validateGuess(guessOne, answerOne);
+  expect(resultOne).toStrictEqual([2, 1]);
+
+  answerOne = ["r", "y", "r", "b"];
+  guessOne = ["y", "r", "b", "r"];
+
+  resultOne = validateGuess(guessOne, answerOne);
+  expect(resultOne).toStrictEqual([0, 4]);
+
+  answerOne = ["r", "y", "r", "b"];
+  guessOne = ["g", "g", "g", "g"];
+
+  resultOne = validateGuess(guessOne, answerOne);
+  expect(resultOne).toStrictEqual([0, 0]);
 });
 
 // test(`[ExampleTest Component]: Should render 💣`, async () => {

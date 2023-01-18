@@ -9,17 +9,33 @@ export const validateGuess = (
   guessArray: Array<String>,
   winningAnswer: Array<String>
 ): GuessValidation => {
-  let numCorrect: number = 0;
-  let numMisplaced: number = 0;
+  let numCorrect = 0;
+  let numAlmost = 0;
 
-  guessArray.forEach((g, i) => {
-    if (g[i] === winningAnswer[i]) {
-      numCorrect++;
-    } else if (winningAnswer.includes(g[i])) {
-      numMisplaced++;
+  const correctIndices: number[] = [];
+
+  for (let i = 0; i < guessArray.length; i++) {
+    if (guessArray[i] === winningAnswer[i]) {
+      correctIndices.push(i);
     }
-  });
-  return [numCorrect, numMisplaced];
+  }
+
+  numCorrect = correctIndices.length;
+
+  let numRemoved = 0;
+  for (const num of correctIndices) {
+    guessArray.splice(num - numRemoved, 1);
+    winningAnswer.splice(num - numRemoved, 1);
+    numRemoved++;
+  }
+
+  for (const guess of guessArray) {
+    if (winningAnswer.includes(guess)) {
+      numAlmost++;
+    }
+  }
+
+  return [numCorrect, numAlmost];
 };
 
 export const onPost: RequestHandler<Promise<GuessValidation>> = async ({
