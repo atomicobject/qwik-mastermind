@@ -57,6 +57,13 @@ test(`validateGuess should return correct validation value`, async () => {
 
   resultOne = validateGuess(guessOne, answerOne);
   expect(resultOne).toStrictEqual([4, 0]);
+
+  // test with different letters
+  answerOne = ["r", "y", "g", "b"];
+  guessOne = ["b", "y", "g", "c"];
+
+  resultOne = validateGuess(guessOne, answerOne);
+  expect(resultOne).toStrictEqual([2, 1]);
 });
 
 // test(`[ExampleTest Component]: Should render 💣`, async () => {

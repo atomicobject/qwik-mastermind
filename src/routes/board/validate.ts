@@ -10,18 +10,24 @@ export const validateGuess = (
   guessArray: Array<String>,
   winningAnswer: Array<String>
 ): GuessValidation => {
-  // filter out the correct answers and sort the array
-  const sortedFilteredAnswer = winningAnswer
-    .filter((letter, index) => letter !== guessArray[index])
-    .sort();
+  // filter out the correct answers
+  const filteredAnswer = winningAnswer.filter(
+    (letter, index) => letter !== guessArray[index]
+  );
 
   return [
-    winningAnswer.length - sortedFilteredAnswer.length,
-    // filter out the correct answers, sort it, then count the matching answers
+    winningAnswer.length - filteredAnswer.length,
+    // filter out the correct answers, count matching guesses and remove from filtered answer
+    // to ensure we get the correct count for misplaced guesses
     guessArray
       .filter((letter, index) => letter !== winningAnswer[index])
-      .sort()
-      .filter((letter, index) => letter === sortedFilteredAnswer[index]).length,
+      .filter((letter) => {
+        if (filteredAnswer.includes(letter)) {
+          filteredAnswer.splice(filteredAnswer.indexOf(letter), 1);
+          return true;
+        }
+        return false;
+      }).length,
   ];
 };
 
