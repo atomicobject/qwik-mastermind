@@ -5,55 +5,23 @@ type GuessValidation = Array<Number>;
 
 const winningAnswerHardCoded = ["r", "g", "b", "y"];
 
+// jacob gave me this idea :P
 export const validateGuess = (
   guessArray: Array<String>,
   winningAnswer: Array<String>
 ): GuessValidation => {
-  let numCorrect = 0;
-  let numAlmost = 0;
-
-  const correctIndices: number[] = [];
-
-  for (let i = 0; i < guessArray.length; i++) {
-    if (guessArray[i] === winningAnswer[i]) {
-      correctIndices.push(i);
-    }
-  }
-
-  numCorrect = correctIndices.length;
-
-  let numRemoved = 0;
-  for (const num of correctIndices) {
-    guessArray.splice(num - numRemoved, 1);
-    winningAnswer.splice(num - numRemoved, 1);
-    numRemoved++;
-  }
-
-  for (const guess of guessArray) {
-    if (winningAnswer.includes(guess)) {
-      numAlmost++;
-    }
-  }
-
-  return [numCorrect, numAlmost];
-};
-
-// jacob gave me this idea :P
-export const validateGuessFiltering = (
-  guessArray: Array<String>,
-  winningAnswer: Array<String>
-): GuessValidation => {
-  const filteredAnswer = winningAnswer.filter(
-    (letter, index) => letter !== guessArray[index]
-  );
-
-  const filteredGuess = guessArray.filter(
-    (letter, index) => letter !== winningAnswer[index]
-  );
+  // filter out the correct answers and sort the array
+  const sortedFilteredAnswer = winningAnswer
+    .filter((letter, index) => letter !== guessArray[index])
+    .sort();
 
   return [
-    winningAnswer.length - filteredAnswer.length,
-    filteredGuess.filter((letter) => filteredAnswer.includes(letter)).length,
+    winningAnswer.length - sortedFilteredAnswer.length,
+    // filter out the correct answers, sort it, then count the matching answers
+    guessArray
+      .filter((letter, index) => letter !== winningAnswer[index])
+      .sort()
+      .filter((letter, index) => letter === sortedFilteredAnswer[index]).length,
   ];
 };
 
