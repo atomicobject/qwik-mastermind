@@ -2,25 +2,26 @@
 import type { RequestHandler } from "@builder.io/qwik-city";
 
 type GuessValidation = Array<Number>;
-
 const winningAnswerHardCoded = ["r", "g", "b", "y"];
 
-export const validateGuess = (
-  guessArray: Array<String>,
-  winningAnswer: Array<String>
-): GuessValidation => {
-  let numCorrect: number = 0;
-  let numMisplaced: number = 0;
+export const validateGuess = (guessArray: Array<String>, winningAnswer: Array<String>): GuessValidation => {
+    let numCorrect: number = 0;
+    let numMisplaced: number = 0;
 
-  guessArray.forEach((g, i) => {
-    if (g[i] === winningAnswer[i]) {
-      numCorrect++;
-    } else if (winningAnswer.includes(g[i])) {
-      numMisplaced++;
+    let filteredAnswer = winningAnswer.filter((letter, index) => letter !== guessArray[index]);
+    let filteredGuess = guessArray.filter((letter, index) => letter !== winningAnswer[index]);
+
+    numCorrect = winningAnswer.length - filteredAnswer.length;
+    
+    for (let i = 0; i < filteredGuess.length; i++) {
+        if (filteredAnswer.includes(filteredGuess[i])) {
+            let firstOccurrence = filteredAnswer.indexOf(filteredGuess[i]);
+            filteredAnswer.splice(firstOccurrence, 1);
+            numMisplaced++;
+        }
     }
-  });
-  return [numCorrect, numMisplaced];
-};
+    return [numCorrect, numMisplaced];
+}
 
 export const onPost: RequestHandler<Promise<GuessValidation>> = async ({
   request,
