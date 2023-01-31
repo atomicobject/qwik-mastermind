@@ -1,12 +1,14 @@
 .guess-validator {
-  display: grid;
-  grid-template-areas:
-    "top-left top-right"
-    "bottom-left bottom-right";
+  width: 5vw;
+  height: 5vw;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
-.validator-border {
+.validator-square {
   outline: #095256 solid 1px;
+  width: 2.5vw;
 }
 
 .correct {

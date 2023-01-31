@@ -1,6 +1,8 @@
 .guess-entry {
   background-color: darkorchid;
   text-align: center;
+  width: 5vw;
+  height: 5vw;
 }
 
 .guess-entry {
