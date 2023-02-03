@@ -4,6 +4,7 @@ import {
   useStylesScoped$,
   useContext,
   QwikMouseEvent,
+  useOnDocument,
 } from "@builder.io/qwik";
 import styles from "./color-select-display.css?inline";
 import { MyContext } from "../game-board/board";
@@ -22,9 +23,41 @@ export const ColorSelectDisplay = component$(() => {
       if (gameState.currentRow < 4) {
         gameState.board[gameState.currentColumn][gameState.currentRow] =
           element.innerHTML;
+        gameState.currentRow++;
       }
-      gameState.currentRow++;
     }
+  );
+
+  useOnDocument(
+    'keydown',
+    $((event) => {
+      const key = (event as KeyboardEvent).key
+      console.log("key: " + key)
+      switch (key) {
+        case 'q':
+        case 'w':
+        case 'e':
+        case 'r':
+        case 't':
+        case 'y':
+          gameState.board[gameState.currentColumn][gameState.currentRow] = key.toUpperCase();
+          if (gameState.currentRow < 3) {
+            gameState.currentRow++;
+          }
+          break
+        case 'Backspace':
+          gameState.board[gameState.currentColumn][gameState.currentRow] = ''
+          if (gameState.currentRow > 0) {
+            gameState.currentRow--
+          }
+          break
+        case 'Enter':
+          if (gameState.currentRow == 3) {
+            console.log('call our validation logic')
+          }
+          break
+      }
+    })
   );
 
   const qwerty = "QWERTY".split("");
