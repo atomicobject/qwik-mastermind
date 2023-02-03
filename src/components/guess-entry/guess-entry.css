@@ -9,18 +9,24 @@
   outline: #095256 solid 1px;
 }
 
-.r {
-  background-color: #ffc09f;
+.Q {
+  background-color: #f27a63;
+}
+.W {
+  background-color: #ff982b;
+}
+.E {
+  background-color: #fef445;
 }
 
-.b {
-  background-color: #79addc;
+.R {
+  background-color: #8fd14f;
 }
 
-.g {
-  background-color: #adf7b6;
+.T {
+  background-color: #414bb2;
 }
 
-.y {
-  background-color: #ffee93;
+.Y {
+  background-color: #9510ac;
 }

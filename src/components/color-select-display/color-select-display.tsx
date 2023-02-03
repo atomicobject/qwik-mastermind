@@ -1,19 +1,32 @@
-import { $, component$, useStylesScoped$, useContext, QwikMouseEvent, useOnDocument } from "@builder.io/qwik";
+import {
+  $,
+  component$,
+  useStylesScoped$,
+  useContext,
+  QwikMouseEvent,
+} from "@builder.io/qwik";
 import styles from "./color-select-display.css?inline";
 import { MyContext } from "../game-board/board";
-import { GameState } from "../../types/game-types"
+import { GameState } from "../../types/game-types";
 
 export const ColorSelectDisplay = component$(() => {
   useStylesScoped$(styles);
-  
+
   const gameState = useContext(MyContext) as GameState;
-  
-  const selectColor = $((event: QwikMouseEvent<HTMLButtonElement, MouseEvent>, element: Element) => {
-    gameState.board[gameState.currentColumn][gameState.currentRow] = element.innerHTML
-    
-    gameState.currentRow++
-  })
-  
+
+  const selectColor = $(
+    (
+      event: QwikMouseEvent<HTMLButtonElement, MouseEvent>,
+      element: Element
+    ) => {
+      if (gameState.currentRow < 4) {
+        gameState.board[gameState.currentColumn][gameState.currentRow] =
+          element.innerHTML;
+      }
+      gameState.currentRow++;
+    }
+  );
+
   const qwerty = "QWERTY".split("");
 
   return (
@@ -26,5 +39,5 @@ export const ColorSelectDisplay = component$(() => {
         );
       })}
     </div>
-  )
+  );
 });
