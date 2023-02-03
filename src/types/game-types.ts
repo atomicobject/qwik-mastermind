@@ -10,3 +10,10 @@ export interface iGuessEntry {
 export interface iValidator {
   data: number[];
 }
+
+// Define gameState
+export interface GameState {
+  board: (string | number)[][],
+  currentColumn: number,
+  currentRow: number
+}
