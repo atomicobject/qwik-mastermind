@@ -20,42 +20,53 @@ export const ColorSelectDisplay = component$(() => {
       event: QwikMouseEvent<HTMLButtonElement, MouseEvent>,
       element: Element
     ) => {
-      if (gameState.currentRow < 4) {
+      if (
+        gameState.currentRow <= 3 &&
+        !gameState.board[gameState.currentColumn][gameState.currentRow]
+      ) {
         gameState.board[gameState.currentColumn][gameState.currentRow] =
           element.innerHTML;
+      }
+      if (gameState.currentRow < 3) {
         gameState.currentRow++;
       }
     }
   );
 
   useOnDocument(
-    'keydown',
+    "keydown",
     $((event) => {
-      const key = (event as KeyboardEvent).key
-      console.log("key: " + key)
+      const key = (event as KeyboardEvent).key;
+      console.log("key: " + key);
       switch (key) {
-        case 'q':
-        case 'w':
-        case 'e':
-        case 'r':
-        case 't':
-        case 'y':
-          gameState.board[gameState.currentColumn][gameState.currentRow] = key.toUpperCase();
+        case "q":
+        case "w":
+        case "e":
+        case "r":
+        case "t":
+        case "y":
+          if (
+            gameState.currentRow <= 3 &&
+            !gameState.board[gameState.currentColumn][gameState.currentRow]
+          ) {
+            gameState.board[gameState.currentColumn][gameState.currentRow] =
+              key.toUpperCase();
+          }
           if (gameState.currentRow < 3) {
             gameState.currentRow++;
           }
-          break
-        case 'Backspace':
-          gameState.board[gameState.currentColumn][gameState.currentRow] = ''
+          break;
+        case "Backspace":
+          gameState.board[gameState.currentColumn][gameState.currentRow] = "";
           if (gameState.currentRow > 0) {
-            gameState.currentRow--
+            gameState.currentRow--;
           }
-          break
-        case 'Enter':
+          break;
+        case "Enter":
           if (gameState.currentRow == 3) {
-            console.log('call our validation logic')
+            console.log("call our validation logic");
           }
-          break
+          break;
       }
     })
   );
