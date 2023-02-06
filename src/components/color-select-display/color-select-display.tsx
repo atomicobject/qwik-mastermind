@@ -33,6 +33,27 @@ export const ColorSelectDisplay = component$(() => {
     }
   );
 
+  const removeEntry = $(
+    (
+      event: QwikMouseEvent<HTMLButtonElement, MouseEvent>,
+      element: Element
+    ) => {
+      gameState.board[gameState.currentColumn][gameState.currentRow] = "";
+      if (gameState.currentRow > 0) {
+        gameState.currentRow--;
+      }
+    }
+  );
+  const validateGuess = $(
+    (
+      event: QwikMouseEvent<HTMLButtonElement, MouseEvent>,
+      element: Element
+    ) => {
+      if (gameState.currentRow == 3) {
+        console.log("call our validation logic");
+      }
+    }
+  );
   useOnDocument(
     "keydown",
     $((event) => {
@@ -82,6 +103,14 @@ export const ColorSelectDisplay = component$(() => {
           </button>
         );
       })}
+      <div class="entry-controls">
+        <button class="control entry" onClick$={validateGuess}>
+          Enter
+        </button>
+        <button class="control delete" onClick$={removeEntry}>
+          Delete
+        </button>
+      </div>
     </div>
   );
 });
