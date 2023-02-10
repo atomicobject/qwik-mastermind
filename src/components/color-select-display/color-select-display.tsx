@@ -30,6 +30,7 @@ export const ColorSelectDisplay = component$(() => {
       if (gameState.currentRow < 3) {
         gameState.currentRow++;
       }
+      console.log(gameState.currentRow);
     }
   );
 
@@ -42,6 +43,7 @@ export const ColorSelectDisplay = component$(() => {
       if (gameState.currentRow > 0) {
         gameState.currentRow--;
       }
+      console.log(gameState.currentRow);
     }
   );
   const validateGuess = $(
@@ -78,10 +80,15 @@ export const ColorSelectDisplay = component$(() => {
           }
           break;
         case "Backspace":
-          gameState.board[gameState.currentColumn][gameState.currentRow] = "";
-          if (gameState.currentRow > 0) {
+          if (
+            gameState.board[gameState.currentColumn][gameState.currentRow] ===
+              "" &&
+            gameState.currentRow > 0
+          ) {
             gameState.currentRow--;
           }
+          gameState.board[gameState.currentColumn][gameState.currentRow] = "";
+
           break;
         case "Enter":
           if (gameState.currentRow == 3) {
