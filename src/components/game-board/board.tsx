@@ -5,14 +5,13 @@ import {
   useContextProvider,
   createContext,
 } from "@builder.io/qwik";
-import { GameState } from "../../types/game-types"
+import { GameState } from "../../types/game-types";
 import { ColorSelectDisplay } from "../color-select-display/color-select-display";
 import { GuessColumn } from "../guess-column/guess-column";
 import styles from "./board.css?inline";
 
-
 // Create a new context descriptor
-export const MyContext = createContext('my-context');
+export const MyContext = createContext("my-context");
 
 export const GameBoard = component$(() => {
   useStylesScoped$(styles);
@@ -32,6 +31,7 @@ export const GameBoard = component$(() => {
         ["", "", "", "", 0, 0],
       ],
       currentColumn: 0,
+      lastEnteredRow: -1,
       currentRow: 0,
     },
     { recursive: true }

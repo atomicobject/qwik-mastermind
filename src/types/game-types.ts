@@ -13,7 +13,8 @@ export interface iValidator {
 
 // Define gameState
 export interface GameState {
-  board: (string | number)[][],
-  currentColumn: number,
-  currentRow: number
+  board: (string | number)[][];
+  currentColumn: number;
+  lastEnteredRow: number;
+  currentRow: number;
 }
