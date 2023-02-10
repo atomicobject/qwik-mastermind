@@ -53,6 +53,7 @@ export const ColorSelectDisplay = component$(() => {
   useOnDocument(
     "keydown",
     $((event) => {
+      event.preventDefault();
       const key = (event as KeyboardEvent).key;
       switch (key) {
         case "q":
@@ -92,6 +93,7 @@ export const ColorSelectDisplay = component$(() => {
       {qwerty.map((letter) => {
         return (
           <button
+            preventdefault:click
             type="button"
             class="color-select-square"
             onClick$={selectColor}
@@ -101,10 +103,18 @@ export const ColorSelectDisplay = component$(() => {
         );
       })}
       <div class="entry-controls">
-        <button class="control entry" onClick$={validateGuess}>
+        <button
+          preventdefault:click
+          class="control entry"
+          onClick$={validateGuess}
+        >
           Enter
         </button>
-        <button class="control delete" onClick$={removeEntry}>
+        <button
+          preventdefault:click
+          class="control delete"
+          onClick$={removeEntry}
+        >
           Delete
         </button>
       </div>
