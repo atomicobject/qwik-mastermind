@@ -25,8 +25,6 @@ export const ColorSelectDisplay = component$(() => {
         gameState.board[gameState.currentColumn][gameState.lastEnteredRow] =
           element.innerHTML;
       }
-
-      console.log("select color: ", gameState.lastEnteredRow);
     }
   );
 
@@ -35,11 +33,10 @@ export const ColorSelectDisplay = component$(() => {
       event: QwikMouseEvent<HTMLButtonElement, MouseEvent>,
       element: Element
     ) => {
-      gameState.board[gameState.currentColumn][gameState.lastEnteredRow] = "";
       if (gameState.lastEnteredRow > -1) {
+        gameState.board[gameState.currentColumn][gameState.lastEnteredRow] = "";
         gameState.lastEnteredRow--;
       }
-      console.log(gameState.lastEnteredRow);
     }
   );
   const validateGuess = $(
@@ -57,7 +54,6 @@ export const ColorSelectDisplay = component$(() => {
     "keydown",
     $((event) => {
       const key = (event as KeyboardEvent).key;
-      console.log("key: " + key);
       switch (key) {
         case "q":
         case "w":
@@ -73,9 +69,9 @@ export const ColorSelectDisplay = component$(() => {
 
           break;
         case "Backspace":
-          gameState.board[gameState.currentColumn][gameState.lastEnteredRow] =
-            "";
           if (gameState.lastEnteredRow > -1) {
+            gameState.board[gameState.currentColumn][gameState.lastEnteredRow] =
+              "";
             gameState.lastEnteredRow--;
           }
           break;
