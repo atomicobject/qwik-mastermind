@@ -15,69 +15,56 @@ export const ColorSelectDisplay = component$(() => {
 
   const gameState = useContext(MyContext) as GameState;
 
+  const putColor = $((color: string) => {
+    console.log("Putting Color", color);
+    if (
+      gameState.currentRow <= 3 &&
+      !gameState.board[gameState.currentColumn][gameState.currentRow]
+    ) {
+      gameState.board[gameState.currentColumn][gameState.currentRow] = color;
+    }
+    if (gameState.currentRow < 3) {
+      gameState.currentRow++;
+    }
+  });
+
   const selectColor = $(
     (
       event: QwikMouseEvent<HTMLButtonElement, MouseEvent>,
       element: Element
     ) => {
-      if (
-        gameState.currentRow <= 3 &&
-        !gameState.board[gameState.currentColumn][gameState.currentRow]
-      ) {
-        gameState.board[gameState.currentColumn][gameState.currentRow] =
-          element.innerHTML;
-      }
-      if (gameState.currentRow < 3) {
-        gameState.currentRow++;
-      }
-      console.log(gameState.currentRow);
+      putColor(element.innerHTML);
     }
   );
 
-  const removeEntry = $(
-    (
-      event: QwikMouseEvent<HTMLButtonElement, MouseEvent>,
-      element: Element
-    ) => {
-      gameState.board[gameState.currentColumn][gameState.currentRow] = "";
-      if (gameState.currentRow > 0) {
-        gameState.currentRow--;
-      }
-      console.log(gameState.currentRow);
+  const removeEntry = $(() => {
+    if (
+      gameState.currentRow > 0 &&
+      gameState.board[gameState.currentColumn][gameState.currentRow] === ""
+    ) {
+      gameState.currentRow--;
     }
-  );
-  const validateGuess = $(
-    (
-      event: QwikMouseEvent<HTMLButtonElement, MouseEvent>,
-      element: Element
-    ) => {
-      if (gameState.currentRow == 3) {
-        console.log("call our validation logic");
-      }
+    gameState.board[gameState.currentColumn][gameState.currentRow] = "";
+  });
+
+  const validateGuess = $(() => {
+    if (
+      gameState.currentRow == 3 &&
+      gameState.board[gameState.currentColumn][3] !== ""
+    ) {
+      console.log("call our validation logic");
+      gameState.currentRow = 0;
+      gameState.currentColumn++;
     }
-  );
+  });
   useOnDocument(
     "keydown",
     $((event) => {
       const key = (event as KeyboardEvent).key;
       console.log("key: " + key);
       switch (key) {
-        case "q":
-        case "w":
-        case "e":
-        case "r":
-        case "t":
-        case "y":
-          if (
-            gameState.currentRow <= 3 &&
-            !gameState.board[gameState.currentColumn][gameState.currentRow]
-          ) {
-            gameState.board[gameState.currentColumn][gameState.currentRow] =
-              key.toUpperCase();
-          }
-          if (gameState.currentRow < 3) {
-            gameState.currentRow++;
-          }
+        case "q" || "w" || "e" || "r" || "t" || "y":
+          putColor(key.toUpperCase());
           break;
         case "Backspace":
           if (
@@ -91,8 +78,11 @@ export const ColorSelectDisplay = component$(() => {
 
           break;
         case "Enter":
-          if (gameState.currentRow == 3) {
-            console.log("call our validation logic");
+          if (
+            gameState.currentRow == 3 &&
+            gameState.board[gameState.currentColumn][3] !== ""
+          ) {
+            validateGuess();
           }
           break;
       }
@@ -105,7 +95,11 @@ export const ColorSelectDisplay = component$(() => {
     <div class="color-select-display">
       {qwerty.map((letter) => {
         return (
-          <button class="color-select-square" onClick$={selectColor}>
+          <button
+            type="button"
+            class="color-select-square"
+            onClick$={selectColor}
+          >
             {letter}
           </button>
         );
