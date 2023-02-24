@@ -17,3 +17,4 @@ export const GuessValidator: Component<iValidator> = component$(({ data }) => {
 		</div>
 	);
 });
+ 
