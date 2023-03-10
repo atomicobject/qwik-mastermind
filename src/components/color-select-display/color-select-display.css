@@ -1,6 +1,6 @@
 .color-select-display {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   height: 5vw;
   margin-bottom: 2vw;
   width: fit-content;
@@ -32,4 +32,17 @@
 }
 .color-select-square:nth-child(n + 6) {
   background-color: #9510ac;
+}
+.entry-controls {
+  display: grid;
+  margin: 0.3vw;
+}
+
+.entry {
+  margin-bottom: 0.15vw;
+  background-color: lightgreen;
+}
+.delete{ 
+  margin-top: 0.15vw;
+  background-color: lightcoral;
 }

@@ -8,7 +8,7 @@ export const GuessColumn: Component<iGuessColumn> = component$(
   ({ guessEntries, index }) => {
     useStylesScoped$(styles);
 
-    const entryData = guessEntries.slice(0, 4);
+    const entryData = guessEntries.slice(0, guessEntries.length - 2);
     const validationData = guessEntries.slice(-2);
 
     return (

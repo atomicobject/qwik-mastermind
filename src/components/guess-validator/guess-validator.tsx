@@ -12,7 +12,7 @@ export const GuessValidator: Component<iValidator> = component$(({ data }) => {
   return (
     <div class="guess-validator">
       {colorValue.map((item) => {
-        return <span class={"validator-square " + item}>{item}</span>;
+        return <span class={"validator-square " + item}></span>;
       })}
     </div>
   );
