@@ -32,7 +32,6 @@ export const GameBoard = component$(() => {
       ],
       currentColumn: 0,
       lastEnteredRow: -1,
-      currentRow: 0,
     },
     { recursive: true }
   );
