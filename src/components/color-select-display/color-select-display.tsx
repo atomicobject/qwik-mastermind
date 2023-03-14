@@ -9,6 +9,7 @@ import {
 import styles from "./color-select-display.css?inline";
 import { MyContext } from "../game-board/board";
 import { GameState } from "../../types/game-types";
+import { validateGuess } from "../../routes/board/validate";
 
 export const ColorSelectDisplay = component$(() => {
   useStylesScoped$(styles);
@@ -30,8 +31,8 @@ export const ColorSelectDisplay = component$(() => {
 
   const removeEntry = $(
     (
-      event: QwikMouseEvent<HTMLButtonElement, MouseEvent>,
-      element: Element
+      event?: QwikMouseEvent<HTMLButtonElement, MouseEvent>,
+      element?: Element
     ) => {
       if (gameState.lastEnteredRow > -1) {
         gameState.board[gameState.currentColumn][gameState.lastEnteredRow] = "";
@@ -39,12 +40,25 @@ export const ColorSelectDisplay = component$(() => {
       }
     }
   );
-  const validateGuess = $(
+  const validate = $(
     (
-      event: QwikMouseEvent<HTMLButtonElement, MouseEvent>,
-      element: Element
+      event?: QwikMouseEvent<HTMLButtonElement, MouseEvent>,
+      element?: Element
     ) => {
       if (gameState.lastEnteredRow === 3) {
+        const score = validateGuess(
+          gameState.board[gameState.currentColumn].slice(
+            0,
+            gameState.board[gameState.currentColumn].length - 2
+          ) as string[],
+          gameState.answer
+        );
+        gameState.board[gameState.currentColumn][
+          gameState.board[gameState.currentColumn].length - 2
+        ] = score[0];
+        gameState.board[gameState.currentColumn][
+          gameState.board[gameState.currentColumn].length - 1
+        ] = score[1];
         gameState.currentColumn++;
         gameState.lastEnteredRow = -1;
       }
@@ -69,17 +83,10 @@ export const ColorSelectDisplay = component$(() => {
           }
           break;
         case "Backspace":
-          if (gameState.lastEnteredRow > -1) {
-            gameState.board[gameState.currentColumn][gameState.lastEnteredRow] =
-              "";
-            gameState.lastEnteredRow--;
-          }
+          removeEntry();
           break;
         case "Enter":
-          if (gameState.lastEnteredRow === 3) {
-            gameState.currentColumn++;
-            gameState.lastEnteredRow = -1;
-          }
+          validate();
           break;
       }
     })
@@ -102,11 +109,7 @@ export const ColorSelectDisplay = component$(() => {
         );
       })}
       <div class="entry-controls">
-        <button
-          preventdefault:click
-          class="control entry"
-          onClick$={validateGuess}
-        >
+        <button preventdefault:click class="control entry" onClick$={validate}>
           Enter
         </button>
         <button

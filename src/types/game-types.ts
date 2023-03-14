@@ -16,4 +16,5 @@ export interface GameState {
   board: (string | number)[][];
   currentColumn: number;
   lastEnteredRow: number;
+  answer: string[];
 }
