@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  border-top: #095256 solid 2px;;
 }
 
 .validator-square {
@@ -12,17 +13,13 @@
 }
 
 .correct {
-  background-color: #2a9d8f;
+  background-color: #02ff06;
 }
 
 .almost {
-  background-color: #e9c46a;
+  background-color: #ffff00;
 }
 
 .incorrect {
-  background-color: #264653;
-}
-
-.none {
-  background-color: whitesmoke;
+  background-color: rgb(220, 239, 246);
 }

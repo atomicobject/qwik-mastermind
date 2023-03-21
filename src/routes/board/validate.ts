@@ -1,14 +1,14 @@
 // File: src/routes/board/validate.ts
 import type { RequestHandler } from "@builder.io/qwik-city";
 
-type GuessValidation = Array<Number>;
+type GuessValidation = Array<number>;
 
 const winningAnswerHardCoded = ["r", "g", "b", "y"];
 
 // jacob gave me this idea :P
 export const validateGuess = (
-  guessArray: Array<String>,
-  winningAnswer: Array<String>
+  guessArray: Array<string>,
+  winningAnswer: Array<string>
 ): GuessValidation => {
   // filter out the correct answers
   const filteredAnswer = winningAnswer.filter(

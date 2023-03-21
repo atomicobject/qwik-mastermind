@@ -9,7 +9,6 @@ export const GuessColumn: Component<iGuessColumn> = component$(
     useStylesScoped$(styles);
 
     const entryData = guessEntries.slice(0, guessEntries.length - 2);
-    const validationData = guessEntries.slice(-2);
 
     return (
       <div class="guess-column">
@@ -21,7 +20,8 @@ export const GuessColumn: Component<iGuessColumn> = component$(
             />
           );
         })}
-        <GuessValidator data={validationData as number[]} />
+        {/* Passing a variable casue sqwik to not re-render this component due to creating a new reference in memory */}
+        <GuessValidator data={guessEntries.slice(-2) as number[]} />
       </div>
     );
   }
