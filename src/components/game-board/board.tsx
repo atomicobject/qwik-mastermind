@@ -16,6 +16,11 @@ export const MyContext = createContext("my-context");
 export const GameBoard = component$(() => {
   useStylesScoped$(styles);
 
+  const answer = Array.from({ length: 4 }, () => {
+    const randomColor = Math.floor(Math.random() * 6);
+    return ["Q", "W", "E", "R", "T", "Y"][randomColor];
+  });
+
   const gameState: GameState = useStore(
     {
       board: [
@@ -32,7 +37,7 @@ export const GameBoard = component$(() => {
       ],
       currentColumn: 0,
       lastEnteredRow: -1,
-      answer: ["R", "R", "Q", "R"],
+      answer: answer,
     },
     { recursive: true }
   );
