@@ -7,6 +7,7 @@ import {
 } from "@builder.io/qwik";
 import { GameState } from "../../types/game-types";
 import { ColorSelectDisplay } from "../color-select-display/color-select-display";
+import { EndModal } from "../end-modal/end-modal";
 import { GuessColumn } from "../guess-column/guess-column";
 import styles from "./board.css?inline";
 
@@ -40,6 +41,8 @@ export const GameBoard = component$(() => {
   // Assign value (gameState) to the context (MyContext)
   useContextProvider(MyContext, gameState);
   return (
+    <>
+    <EndModal></EndModal>
     <div class="game-container">
       <ColorSelectDisplay />
       <div class="game-board">
@@ -52,5 +55,6 @@ export const GameBoard = component$(() => {
         ))}
       </div>
     </div>
+    </>
   );
 });
