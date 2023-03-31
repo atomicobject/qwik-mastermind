@@ -34,6 +34,7 @@ export const GameBoard = component$(() => {
       currentColumn: 0,
       lastEnteredRow: -1,
       answer: ["R", "R", "Q", "R"],
+      win: false,
     },
     { recursive: true }
   );
@@ -42,19 +43,19 @@ export const GameBoard = component$(() => {
   useContextProvider(MyContext, gameState);
   return (
     <>
-    <EndModal></EndModal>
-    <div class="game-container">
-      <ColorSelectDisplay />
-      <div class="game-board">
-        {gameState.board.map((column, index) => (
-          <GuessColumn
-            key={"column " + index}
-            guessEntries={column}
-            index={index}
-          />
-        ))}
+      {gameState.win && <EndModal numGuesses={gameState.currentColumn} />}
+      <div class="game-container">
+        <ColorSelectDisplay />
+        <div class="game-board">
+          {gameState.board.map((column, index) => (
+            <GuessColumn
+              key={"column " + index}
+              guessEntries={column}
+              index={index}
+            />
+          ))}
+        </div>
       </div>
-    </div>
     </>
   );
 });

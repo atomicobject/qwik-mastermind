@@ -53,6 +53,10 @@ export const ColorSelectDisplay = component$(() => {
           ) as string[],
           gameState.answer
         );
+        // win state checking
+        if (score[0] == 4) {
+          gameState.win = true;
+        }
         gameState.board[gameState.currentColumn][
           gameState.board[gameState.currentColumn].length - 2
         ] = score[0];

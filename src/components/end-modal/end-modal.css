@@ -4,9 +4,25 @@ div {
   left: calc(50vw - 15rem);
   height: 20rem;
   width: 30rem;
-  border: 5px solid aqua;
-  background-color: orange;
-  color: aqua;
+  border: 5px solid #8fd14f;
+  background-color: #effe99;
+  color: #8fd14f;
   text-align: center;
   font-size: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+p {
+  margin-block-start: 0%;
+  margin-block-end: 0%;
+}
+
+button {
+  margin-top: 3rem;
+}
+#win-message {
+  font-size: 20px;
 }

@@ -17,4 +17,9 @@ export interface GameState {
   currentColumn: number;
   lastEnteredRow: number;
   answer: string[];
+  win: boolean;
+}
+
+export interface iEndModal {
+  numGuesses: number;
 }
